@@ -1,27 +1,30 @@
 const prompt = require('prompt');
+const colours = require('colors');
+
+prompt.message = "Please enter required value".green;
 
 const requiredProperties = [
     {
-        name: 'username'
+        name: 'E2E_TEST_USERNAME'
     },
     {
-        name: 'password',
+        name: 'E2E_TEST_USERNAME_PASSWORD',
         hidden: true,
         replace: '*'
     }
 ];
 
 const filterOutExistingPropeties = () => {
-    const bees =  requiredProperties.reduce((init, current) => {
+    return requiredProperties.reduce((init, current) => {
         if(!process.env[current.name]) {
             init.push(current);
             return init;
         }
+        return init;
     }, []);
-    return bees;
 }
 
-const getRequiredProps = () => {
+const getRequiredPropsFromEnvironment = () => {
     return requiredProperties.reduce((init, current) => {init.push(process.env[current.name]); return init}, []);
 };
 
@@ -41,9 +44,10 @@ new Promise((resolve, reject) => {
         for(var key in result) {
             process.env[key] = result[key];
         }
-        resolve(result);
+        resolve(getRequiredPropsFromEnvironment());
     });
 }).then(result => {
-    console.log('all the details are', getRequiredProps(), result);
+    console.log('all the details are', result);
+    console.log('at this stage, we have everything that we need so we can carry on');
     }
 );

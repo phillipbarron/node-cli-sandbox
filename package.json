@@ -9,6 +9,7 @@
   "author": "Phill arron",
   "license": "ISC",
   "dependencies": {
+    "colors": "^1.3.2",
     "prompt": "^1.0.0"
   }
 }
