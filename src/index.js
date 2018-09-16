@@ -38,7 +38,7 @@ new Promise((resolve, reject) => {
 
     prompt.get(missingProperties, (err, result) => {
         if(err) {
-            console.log('it done a wrong', err);
+            console.log('failed to get required input', err);
             reject(1);
         }
         for(var key in result) {
