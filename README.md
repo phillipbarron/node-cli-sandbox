@@ -1,3 +1,9 @@
 ### Node cli / script testing
 
-sandbox project for testing node scripts.
+Testing CLI stuff
+
+## run
+
+```bash
+node src/index.js
+```
